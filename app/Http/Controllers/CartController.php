@@ -56,7 +56,7 @@ class CartController extends Controller
 
 	public function delete($productId)
 	{
-		//Se busca el producto de acuerdo con el id del usuario.
+		//Se busca el producto de acuerdo con el id del producto.
 		$cartItem = Cart::where('product_id', $productId)->first();
 
 		if ($cartItem) {
@@ -75,5 +75,25 @@ class CartController extends Controller
 		Cart::where('user_id', $userId)->delete();
 
 		return response()->json([], 204);
+	}
+
+	public function increment($productId)
+	{
+		$cartItem = Cart::where('product_id', $productId)->first();
+		if ($cartItem) {
+			$cartItem->quantity += 1;
+			$cartItem->save();
+			return response()->json([], 204);
+		}
+	}
+
+	public function decrement($productId)
+	{
+		$cartItem = Cart::where('product_id', $productId)->first();
+		if ($cartItem) {
+			$cartItem->quantity -= 1;
+			$cartItem->save();
+			return response()->json([], 204);
+		}
 	}
 }

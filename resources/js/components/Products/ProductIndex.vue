@@ -39,15 +39,15 @@
 			}
 		},
 		computed: {
-			//explicar
+			//Se crea dicha función para
 			groupedProducts() {
-				return this.products.reduce((acc, product) => {
+				return this.products.reduce((acu, product) => {
 					const nameCategory = product.category.name
-					if (!acc[nameCategory]) {
-						acc[nameCategory] = []
+					if (!acu[nameCategory]) {
+						acu[nameCategory] = []
 					}
-					acc[nameCategory].push(product)
-					return acc
+					acu[nameCategory].push(product)
+					return acu
 				}, {})
 			},
 			//formatea los numeros a tipo moneda

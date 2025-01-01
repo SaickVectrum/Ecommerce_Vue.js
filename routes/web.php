@@ -61,6 +61,8 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('/add/{productId}', 'add')->name('add');
 		Route::delete('/delete/{productId}', 'delete')->name('delete');
 		Route::delete('/clear', 'clear')->name('clear');
+		Route::post('/increment/{productId}', 'increment')->name('increment');
+		Route::post('/decrement/{productId}', 'decrement')->name('decrement');
 	});
 });
 //Productos por categoria

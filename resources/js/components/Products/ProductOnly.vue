@@ -35,9 +35,7 @@
 		methods: {
 			async addToCart() {
 				const productId = this.product.id
-				console.log(productId)
 				const response = await axios.post(`/cart/add/${productId}`)
-				console.log(response)
 			}
 		},
 		computed: {

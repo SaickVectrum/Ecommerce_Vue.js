@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--$title recibe el title que venga de la vista, en caso de que no, pone por defecto biblioteca-->
-    <title>{{ env('APP_NAME') }} | {{ $title ?? 'Libros' }}</title>
+    <title>{{ env('APP_NAME') }} | {{ $title ?? 'Ecommerce' }}</title>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])

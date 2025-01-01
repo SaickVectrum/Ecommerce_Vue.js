@@ -2,17 +2,16 @@
 
     <div class="container">
 
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
 
-            <img
-                src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/6.6.41/mercadolibre/logo_large_25years_v2.png" /></a>
+            <p class="m-0">Ecommerce</p></a>
 
         {{-- Haburguesa --}}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <form class="d-flex  " action="{{ url('/') }}">
+        <form class="d-flex" action="{{ url('/') }}">
             <input name="buscarpor" class="form-control me-2 w-100" type="search" placeholder="Buscar producto"
                 aria-label="Search" value="{{ $buscarpor }}">
             <button class="btn btn-primary" type="submit">Buscar </button>

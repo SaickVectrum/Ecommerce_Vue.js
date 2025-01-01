@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Carrito">
     <section>
         <div class="d-flex justify-content-center my-4">
             <h1>Carrito de compras</h1>

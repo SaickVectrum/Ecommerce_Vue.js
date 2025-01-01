@@ -12,17 +12,25 @@
 							<tr>
 								<th>Imagen</th>
 								<th>Producto</th>
-								<th>Precio</th>
+								<th>Precio unitario</th>
+								<th>Precio Total</th>
 								<th>Cantidad</th>
 								<th>Eliminar producto</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr v-for="(product, index) in products" :key="index">
-								<td><img :src="product.file.route"  style="width:40px; height:40px;"></td>
+								<td><img :src="product.file.route" style="width:40px; height:40px;"></td>
 								<td>{{ product.title }}</td>
+								<td>{{formatCurrency(product.price)}}</td>
 								<td>{{formatCurrency(product.totalPrice)}}</td>
-								<td>{{ product.quantity}}</td>
+								<td>
+									<div class="input-group mb-3">
+										<button class="btn btn-outline-secondary" type="button" @click="decrementQuantity(product)">-</button>
+										<input type="number" class="form-control" v-model="product.quantity" style="width:15px;">
+										<button class="btn btn-outline-secondary" type="button" @click="incrementQuantity(product)">+</button>
+									</div>
+								</td>
 								<td>
 									<div class="d-flex justify-content-center" title="Editar">
 										<button type="button" class="btn btn-danger btn-sm ms-2" title="Eliminar" @click="deletProduct(product)">
@@ -100,6 +108,29 @@
 				try {
 					await axios.delete(`/cart/clear`)
 					await successMessage({ is_delete: true, reload: true })
+				} catch (error) {
+					console.error(error)
+				}
+			},
+			// Método para incrementar la cantidad
+			async incrementQuantity({ id }) {
+				try {
+					if (this.product.quantity < this.product.stock) {
+						const response = await axios.post(`/cart/increment/${id}`)
+						console.log(response)
+						await successMessage({ reload: true })
+					}
+				} catch (error) {
+					console.error(error)
+				}
+			},
+			// Método para decrementar la cantidad
+			async decrementQuantity({ id }) {
+				try {
+					if (this.product.quantity > this.product.stock && this.product.quantity >= 1) {
+						await axios.post(`/cart/decrement/${id}`)
+						await successMessage({ is_delete: true, reload: true })
+					}
 				} catch (error) {
 					console.error(error)
 				}

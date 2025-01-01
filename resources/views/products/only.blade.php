@@ -1,4 +1,4 @@
-<x-app title="Categorias">
+<x-app title="Producto">
     <section class="container">
         <product-only :product="{{ $product }}"></product-only>
     </section>
